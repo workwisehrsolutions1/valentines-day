@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine? ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <script>
+    (function(){ emailjs.init('YOUR_PUBLIC_KEY'); })();
+  </script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff6a88, #ff99ac);
+      color: #fff;
+      text-align: center;
+    }
+    .container {
+      padding: 30px 15px;
+      max-width: 720px;
+      margin: auto;
+    }
+    h1 { font-size: 2.3rem; }
+    h2 { font-weight: 300; }
+    .card {
+      background: rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+    .question { text-align: left; margin: 18px 0; }
+    label { display: block; margin: 6px 0; cursor: pointer; }
+    button {
+      background: #ff1e56;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .heart { font-size: 3rem; animation: beat 1s infinite; }
+    @keyframes beat { 0%,100%{transform:scale(1);}50%{transform:scale(1.2);} }
+    .hidden { display: none; }
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: none;
+      padding: 10px;
+      font-family: inherit;
+    }
+  </style>
+</head>
+<body>
+  <div class="container"><h1>Before I Ask You Something Special ❤️</h1>
+<h2>Answer these from your heart</h2>
+
+<!-- QUIZ -->
+<div class="card" id="quiz">
+  <div class="question">
+    <strong>1. Our most peaceful moment together?</strong>
+    <label><input type="radio" name="q1" value="Late night talks"> Late night talks</label>
+    <label><input type="radio" name="q1" value="Being silent together"> Being silent together</label>
+    <label><input type="radio" name="q1" value="Laughing endlessly"> Laughing endlessly</label>
+  </div>
+
+  <div class="question">
+    <strong>2. What do you miss the most when I’m not around?</strong>
+    <label><input type="radio" name="q2" value="Your smile"> Your smile</label>
+    <label><input type="radio" name="q2" value="Your care"> Your care</label>
+    <label><input type="radio" name="q2" value="Everything"> Everything</label>
+  </div>
+
+  <div class="question">
+    <strong>3. One word that defines us?</strong>
+    <label><input type="radio" name="q3" value="Crazy"> Crazy</label>
+    <label><input type="radio" name="q3" value="Unbreakable"> Unbreakable</label>
+    <label><input type="radio" name="q3" value="Soulmates"> Soulmates</label>
+  </div>
+
+  <div class="question">
+    <strong>4. Write one thing you never say but feel:</strong>
+    <textarea id="q4" rows="3" placeholder="Write honestly..."></textarea>
+  </div>
+
+  <button onclick="submitQuiz()">Send My Answers 💌</button>
+</div>
+
+<!-- UNIQUE SECTION -->
+<div class="card hidden" id="unique">
+  <h2>Pause for a Moment 💗</h2>
+  <p>
+    Close your eyes for 5 seconds and think about us.
+    Every memory. Every emotion. Every promise without words.
+  </p>
+  <button onclick="showProposal()">I’m Ready ❤️</button>
+</div>
+
+<!-- PROPOSAL -->
+<div class="card hidden" id="proposal">
+  <div class="heart">💘</div>
+  <h1>Will You Be My Valentine? 🌹</h1>
+  <button onclick="alert('Best YES ever ❤️🥹')">YES ❤️</button>
+  <button id="noBtn" onmouseover="moveNo()">NO 🙈</button>
+</div>
+  <h1>Will You Be My Valentine? 🌹</h1>
+  <button onclick="alert('Best YES ever ❤️🥹')">YES ❤️</button>
+</div>
+
+  </div><script>
+function submitQuiz() {
+  const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+  const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+  const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+  const q4 = document.getElementById('q4').value;
+
+  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+    answer1: q1,
+    answer2: q2,
+    answer3: q3,
+    answer4: q4
+  });
+
+  document.getElementById('quiz').classList.add('hidden');
+  document.getElementById('unique').classList.remove('hidden');
+}
+
+function moveNo() {
+  const btn = document.getElementById('noBtn');
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function showProposal(){
+  document.getElementById('unique').classList.add('hidden');
+  document.getElementById('proposal').classList.remove('hidden');
+}
+</script></body>
+</html>
